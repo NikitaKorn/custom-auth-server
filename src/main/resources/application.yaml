@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  ssl:
+    enabled: true
+#    key-alias: auth-service-key
+    key-store: src/main/resources/store/keystore/keystore.jks
+    key-store-password: changeit
+    protocol: "TLSv1.2"
+
+service:
+  # Authorization token signing algorithm (for example HS512, RS512, ES512).
+  algorithm: "HS512"
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: admin
+    password: 123
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+#  datasource:
+#    initialization-mode: always
