@@ -1,7 +1,5 @@
 package com.example.foodsubscription.exception;
 
-import jakarta.validation.ValidationException;
-
 public class CustomValidationException extends RuntimeException {
     private static final String PREFIX = "Validation exception: ";
 

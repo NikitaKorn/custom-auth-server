@@ -1,13 +1,14 @@
 server:
-  port: 8080
+  port: 9000
   ssl:
     enabled: true
-#    key-alias: auth-service-key
     key-store: src/main/resources/store/keystore/keystore.jks
     key-store-password: changeit
     protocol: "TLSv1.2"
 
 service:
+  caching:
+    enable: true
   # Authorization token signing algorithm (for example HS512, RS512, ES512).
   algorithm: "HS512"
 
@@ -26,3 +27,6 @@ spring:
     show-sql: true
 #  datasource:
 #    initialization-mode: always
+
+logging:
+  config: src/main/resources/logback.xml
