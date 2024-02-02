@@ -1,26 +1,22 @@
 package com.example.foodsubscription.config.jwt;
 
-import com.example.foodsubscription.domain.entity.TokenUser;
-import com.example.foodsubscription.repo.TokenUserRepositoryService;
+import com.example.foodsubscription.domain.entity.User;
+import com.example.foodsubscription.repo.UserRepositoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
-    private TokenUserRepositoryService userRepositoryService;
+    private UserRepositoryService userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        TokenUser user = userRepositoryService.findByLogin(username);
-        return User.builder()
-                .username(user.getLogin())
-                .password(user.getPassword())
-                .roles(user.getRole())
-                .build();
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userRepo.findByLogin(login);
+        return new JwtUserDetails(user);
     }
 }
