@@ -23,6 +23,6 @@ public class MainController {
 
     @GetMapping("/get")
     public String get(){
-        return "zhopa";
+        return "test";
     }
 }
